@@ -1,0 +1,85 @@
+<!doctype html><html><head><meta charset="UTF-8"><title>Literature Graph View </title><link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans:ital,wght@0,300..700;1,300..700&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet"><!-- icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"><style>
+				body {
+					font-family: 'Inclusive Sans', sans-serif;
+					color: white;
+					margin: 10px; 
+				}
+				#main {
+					width: 100vw;
+					height: 100vh;
+				}
+			</style></head><body class="bg-black"><div id="main"></div><!-- ECharts library --><script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<script type="text/javascript">
+	var myChart = echarts.init(document.getElementById('main'));
+
+	var graph = {
+		nodes: [{ id: "cats/behaviour-territory.md", name: "Cat Behavior and Territory", category: 0, value: "Cat Behavior and Territory\nCats are territorial animals, often marking areas with scent glands.\nUnlike dogs, many domestic cats prefer solitary lifestyles and form looser social bonds. \ndogs/domesticated\nRead More \ncats/companions" }, { id: "cats/companions.md", name: "Cats as Independent Companions", category: 0, value: "Cats as Independent Companions\nCats (Felis catus) were domesticated more recently than dogs, around 9,000 years ago.\nThey were valued for pest control but are generally more independent and solitary than dogs." }, { id: "dogs/domesticated.md", name: "Dogs as Domesticated Companions", category: 1, value: "Dogs as Domesticated Companions\nDogs (Canis lupus familiaris) have been domesticated for over 15,000 years. They were among the first animals domesticated by humans, primarily for hunting and protection.\nThey have since evolved into diverse breeds with a wide range of behaviors and appearances." }, { id: "dogs/intelligence.md", name: "Dog Intelligence and Communication", category: 1, value: "Dog Intelligence and Communication\nDogs are capable of understanding human gestures, vocal commands, and emotional cues.\nResearch shows dogs can learn over 150 words and solve simple problems.\nBorder collies are often cited as the most intelligent breed.\nRead More \ndogs/domesticated" }, { id: "spiders/ecological-controllers.md", name: "Spiders as Ecological Controllers", category: 2, value: "Spiders as Ecological Controllers\nSpiders are arachnids, not insects, and play a crucial role in ecosystems by controlling insect populations.\nDespite widespread fear, most spider species are harmless to humans." }, { id: "spiders/spider-silk.md", name: "Spider Silk Properties", category: 2, value: "Spider Silk Properties\nSpider silk is one of the strongest biological materials known.\nIt’s light, flexible, and stronger than steel by weight, with potential applications in materials science and medicine." }],
+		links: [{ source: "cats/behaviour-territory.md", target: "dogs/domesticated.md" }, { source: "cats/behaviour-territory.md", target: "cats/companions.md" }, { source: "dogs/intelligence.md", target: "dogs/domesticated.md" }],
+		categories: [{ name: "cats" }, { name: "dogs" }, { name: "spiders" }]
+	};
+
+	graph.nodes.forEach(function (node) {
+		node.symbolSize = 8;
+	});
+
+	var option = {
+		color: ['#b4637a', '#f6c177', '#ea9a97', '#3e8fb0', '#9ccfd8', '#c4a7e7'],
+		tooltip: {
+			backgroundColor: '#1f2937',
+			borderColor: '#374151',
+			textStyle: {
+				color: '#ffffff',
+				fontSize: 14,
+				fontFamily: 'Inclusive Sans, sans-serif'
+			},
+			formatter: function (params) {
+				return params.data.value ? params.data.value.replace(/\n/g, '<br>') : '';
+			}
+		},
+		legend: [{
+			data: graph.categories.map(a => a.name),
+			textStyle: {
+				color: '#ffffff',
+				fontSize: 14,
+				fontFamily: 'Inclusive Sans, sans-serif'
+			}
+		}],
+		series: [{
+			type: 'graph',
+			layout: 'force',
+			data: graph.nodes,
+			links: graph.links,
+			categories: graph.categories,
+			roam: true,
+			label: {
+				show: true,
+				position: 'right',
+				color: '#ffffff',
+				fontSize: 12,
+				fontFamily: 'Inclusive Sans, sans-serif',
+				formatter: function(params) {
+					return params.data.name;
+				}
+			},
+			emphasis: {
+				focus: 'adjacency',
+				blurScope: 'coordinateSystem'
+			},
+			force: {
+				repulsion: 300,
+				gravity: 0.1,
+				edgeLength: 100,
+				layoutAnimation: true
+			},
+			zoom: 1.5,
+			center: ['50%', '50%']
+		}]
+	};
+
+	myChart.setOption(option);
+
+	window.addEventListener('resize', function () {
+		myChart.resize();
+	});
+</script>
+</body></html>

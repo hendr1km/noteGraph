@@ -197,9 +197,9 @@ func (g Graph) toGraphStrings() GraphString {
 func nodesToStrings(nodes []Node) []string {
 	var result []string
 	for _, node := range nodes {
-		sanitized := strings.ReplaceAll(node.Value, "\n", "\\n")
+		value := strings.ReplaceAll(node.Value, "\n", "\\n")
 		nodeStr := fmt.Sprintf(`{ id: "%s", name: "%s", category: %d, value: "%s" }`,
-			node.Id, node.Name, node.Category, sanitized)
+			node.Id, node.Name, node.Category, value)
 		result = append(result, nodeStr)
 	}
 	return result
@@ -247,7 +247,7 @@ func (g GraphString) generateHTML() string {
 				fontFamily: 'Inclusive Sans, sans-serif'
 			},
 			formatter: function (params) {
-				return params.data.value ? params.data.value.replace(/\\n/g, '<br>') : '';
+				return params.data.value ? params.data.value.replace(/\n/g, '<br>') : '';
 			}
 		},
 		legend: [{
