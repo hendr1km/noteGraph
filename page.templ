@@ -1,0 +1,38 @@
+package main
+
+templ base(graphString string) {
+	<!DOCTYPE html>
+	<html>
+		<head>
+			<meta charset="UTF-8"/>
+			<title>Literature Graph View </title>
+			<link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"/>
+			<link rel="preconnect" href="https://fonts.googleapis.com"/>
+			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+			<link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans:ital,wght@0,300..700;1,300..700&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet"/>
+			<!-- icons -->
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+			<style>
+				body {
+					font-family: 'Inclusive Sans', sans-serif;
+					color: white;
+					margin: 10px; 
+				}
+				#main {
+					width: 100vw;
+					height: 100vh;
+				}
+			</style>
+		</head>
+		<body class="bg-black">
+			<div id="main"></div>
+			<!-- ECharts library -->
+			<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+			@graph(graphString)
+		</body>
+	</html>
+}
+
+templ graph(graphString string) {
+	@templ.Raw(graphString)
+}
