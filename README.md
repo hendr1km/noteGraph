@@ -5,6 +5,7 @@ It visualizes connections via Wikilinks and mirrors the hierarchical directory s
 
 ## 📂 Demo Preview
 
+```
 ├── cats
 │   ├── behaviour-territory.md
 │   └── companions.md
@@ -15,7 +16,7 @@ It visualizes connections via Wikilinks and mirrors the hierarchical directory s
 │   ├── ecological-controllers.md
 │   └── spider-silk.md
 └── graph.html
-
+```
 ## ✨ Example Output
 
 graph view:
@@ -30,13 +31,13 @@ Hovering over a node displays the note content:
 ## 🚀 Usage
 
 To use this tool, simply clone the repository and build the binary using Go:
-
+```
 go build -o graph
-
+```
 You can then either:
-Move the graph binary into your ~/go/bin folder and run it globally using the graph command, or 
+Move the graph binary into your `~/go/bin folder` and run it globally using the graph command, or 
 Run it directly from your local notes directory using:
-
+```
 ./graph
-
+```
 This command will generate a graph.html file in the current directory, containing a visual representation of your notes with Wikilink connections and folder-based categorization.
