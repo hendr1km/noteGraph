@@ -1,5 +1,6 @@
-<img src="demo/logo.png" align="left" width="60" style="margin-right: 8px;" />
-<h1 style="margin-top: 0; line-height: 60px;">noteGraph</h1>
+<img src="demo/logo.png" align="left" width="80" />
+
+# noteGraph
 
 noteGraph is a simple CLI tool written in Go that renders your Markdown notes into an interactive HTML graph.
 It visualizes connections via Wikilinks and mirrors the hierarchical directory structure of your notes.
