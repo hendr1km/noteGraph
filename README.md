@@ -1,5 +1,3 @@
-<img src="demo/logo.png" align="left" width="80" />
-
 # noteGraph
 
 noteGraph is a simple CLI tool written in Go that renders your Markdown notes into an interactive HTML graph.
