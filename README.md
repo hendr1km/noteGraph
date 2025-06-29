@@ -1,4 +1,4 @@
-<img src="demo/logo.png" align="right" width="100" />
+<img src="demo/logo.png" align="left" width="100" />
 
 # noteGraph
 
